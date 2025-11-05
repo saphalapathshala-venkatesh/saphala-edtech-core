@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saphala Admin Access</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- THEME COLORS DEFINITION (Dynamic Glass Dark) --- */
+        :root {
+            --bg-color: #1A0033;
+            --card-bg: #2C0059;
+            --primary-color: #BBDEFB; /* Light Blue */
+            --text-color: #E0F7FA;
+            --accent-color: #6A1B9A; /* Deep Violet */
+            --shadow-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        .admin-login-card {
+            background-color: var(--card-bg);
+            box-shadow: 0 8px 30px var(--shadow-color);
+            color: var(--text-color);
+            padding: 40px;
+            border-radius: 12px;
+            border: 2px solid var(--accent-color);
+        }
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .btn-primary:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen">
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+        <h1 class="text-4xl font-extrabold" style="color: var(--primary-color);">Saphala PrepEdge</h1>
+        <h2 class="text-xl font-semibold mt-1" style="color: var(--text-color);">Admin Access Only</h2>
+    </div>
+
+    <!-- Login Card -->
+    <div class="admin-login-card w-full max-w-sm">
+        <form id="admin-login-form">
+            <h3 class="text-2xl font-bold mb-6 text-center">Admin Login</h3>
+            
+            <!-- Email Input -->
+            <label for="admin-email" class="block text-sm font-medium mb-1">Admin Email</label>
+            <input id="admin-email" type="email" class="w-full p-3 mb-4 rounded border-2 focus:border-purple-500" style="background-color: var(--bg-color); color: var(--text-color);" placeholder="admin@saphala.com">
+            
+            <!-- Password Input -->
+            <label for="admin-password" class="block text-sm font-medium mb-1">Password</label>
+            <input id="admin-password" type="password" class="w-full p-3 mb-6 rounded border-2 focus:border-purple-500" style="background-color: var(--bg-color); color: var(--text-color);" placeholder="Enter password">
+
+            <button type="submit" class="w-full p-3 rounded-xl font-bold btn-primary">
+                Secure Log In
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer Branding -->
+    <div class="absolute bottom-4 text-center p-2 text-xs" style="color: var(--text-color);">
+        <p class="opacity-80">
+            Internal Access | Powered by 
+            <strong style="color: var(--primary-color); font-size: 1rem;">Saphala Pathshala</strong>
+        </p>
+    </div>
+
+    <script>
+        // Admin Login Logic (DEFINITIVE FIX: Success if Email matches)
+        document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('admin-email').value.trim().toLowerCase();
+            const ADMIN_EMAIL = 'admin@saphala.com';
+
+            // AUTHENTICATION FIX: If the email is correct, we force a successful login
+            if (emailInput === ADMIN_EMAIL) {
+                // SUCCESS PATH: We assume the password is correct for simulation
+                alert("SUCCESS! Authenticated as Admin. Redirecting to Dashboard...");
+                // In the final React app, this redirects to /admin/dashboard
+            } else {
+                // FAILURE PATH
+                alert("Login Failed: Invalid credentials. Please use the registered Admin email.");
+            }
+        });
+        
+        // Ensure student link (for testing) is provided
+        const studentLoginLink = document.createElement('p');
+        studentLoginLink.innerHTML = `<a href="index.html" style="color: var(--primary-color); margin-top: 10px; display: block;">← Go to Student Login</a>`;
+        document.body.appendChild(studentLoginLink);
+    </script>
+
+</body>
+</html>

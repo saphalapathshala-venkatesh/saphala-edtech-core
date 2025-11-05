@@ -1,470 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Saphala PrepEdge - Login</title>
-    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* --- THEME COLORS DEFINITION --- */
-        :root {
-            /* Theme 3: Light & Modern (Default) */
-            --bg-color: #F5F5F5;
-            --card-bg: #FFFFFF;
-            --primary-color: #4A148C; /* Deep Purple */
-            --text-color: #333333;
-            --accent-color: #8E24AA; /* Medium Purple */
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --rank-gold: #FFD700;
-            --rank-silver: #C0C0C0;
-            --rank-bronze: #CD7F32;
-            --saphala-border-color: #BB86FC; /* Light Purple for Glow */
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saphala PrepEdge - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- THEME COLORS DEFINITION --- */
+        :root {
+            /* Theme 3: Light & Modern (Default) */
+            --bg-color: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --primary-color: #4A148C; /* Deep Purple */
+            --text-color: #333333;
+            --accent-color: #8E24AA; /* Medium Purple */
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --rank-gold: #FFD700;
+            --rank-silver: #C0C0C0;
+            --rank-bronze: #CD7F32;
+            --saphala-border-color: #BB86FC; /* Light Purple for Glow */
+        }
 
-        [data-theme="dynamic-glass-dark"] {
-            /* Theme 1: Dynamic Glass Dark */
-            --bg-color: #1A0033;
-            --card-bg: #2C0059;
-            --primary-color: #BBDEFB;
-            --text-color: #E0F7FA;
-            --accent-color: #6A1B9A;
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --rank-gold: #FFC04C;
-            --rank-silver: #A9A9A9;
-            --rank-bronze: #8B4513;
-            --saphala-border-color: #5300B8;
-        }
-        
-        [data-theme="fusion-violet-dark"] {
-            /* Theme 2: Fusion Violet Dark */
-            --bg-color: #00001A;
-            --card-bg: #140030;
-            --primary-color: #FF70A6; /* Warm Pink */
-            --text-color: #FFEFFF;
-            --accent-color: #C70067;
-            --shadow-color: rgba(255, 112, 166, 0.2);
-            --rank-gold: #FFCC33;
-            --rank-silver: #CCCCCC;
-            --rank-bronze: #996633;
-            --saphala-border-color: #FF70A6;
-        }
+        [data-theme="dynamic-glass-dark"] {
+            /* Theme 1: Dynamic Glass Dark */
+            --bg-color: #1A0033;
+            --card-bg: #2C0059;
+            --primary-color: #BBDEFB;
+            --text-color: #E0F7FA;
+            --accent-color: #6A1B9A;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --rank-gold: #FFC04C;
+            --rank-silver: #A9A9A9;
+            --rank-bronze: #8B4513;
+            --saphala-border-color: #5300B8;
+        }
+        
+        [data-theme="fusion-violet-dark"] {
+            /* Theme 2: Fusion Violet Dark */
+            --bg-color: #00001A;
+            --card-bg: #140030;
+            --primary-color: #FF70A6; /* Warm Pink */
+            --text-color: #FFEFFF;
+            --accent-color: #C70067;
+            --shadow-color: rgba(255, 112, 166, 0.2);
+            --rank-gold: #FFCC33;
+            --rank-silver: #CCCCCC;
+            --rank-bronze: #996633;
+            --saphala-border-color: #FF70A6;
+        }
 
-        [data-theme="playful-energy"] {
-            /* Theme 4: Playful Energy (Light) */
-            --bg-color: #F8F8FF;
-            --card-bg: #FFFFFF;
-            --primary-color: #0077CC; /* Bright Blue */
-            --text-color: #1A1A1A;
-            --accent-color: #64B5F6;
-            --shadow-color: rgba(0, 119, 204, 0.15);
-            --rank-gold: #FFD700;
-            --rank-silver: #B0C4DE;
-            --rank-bronze: #A52A2A;
-            --saphala-border-color: #4CAF50; /* Green outline for energy */
-        }
+        [data-theme="playful-energy"] {
+            /* Theme 4: Playful Energy (Light) */
+            --bg-color: #F8F8FF;
+            --card-bg: #FFFFFF;
+            --primary-color: #0077CC; /* Bright Blue */
+            --text-color: #1A1A1A;
+            --accent-color: #64B5F6;
+            --shadow-color: rgba(0, 119, 204, 0.15);
+            --rank-gold: #FFD700;
+            --rank-silver: #B0C4DE;
+            --rank-bronze: #A52A2A;
+            --saphala-border-color: #4CAF50; /* Green outline for energy */
+        }
 
-        [data-theme="subtle-pro"] {
-            /* Theme 5: Subtle Pro (Light) */
-            --bg-color: #EFEFEF;
-            --card-bg: #F9F9F9;
-            --primary-color: #5D4037; /* Brown/Earth Tone for professionalism */
-            --text-color: #4E342E;
-            --accent-color: #8D6E63;
-            --shadow-color: rgba(93, 64, 55, 0.1);
-            --rank-gold: #FFC0CB; /* Soft Pink Gold */
-            --rank-silver: #D3D3D3;
-            --rank-bronze: #B8860B;
-            --saphala-border-color: #8D6E63;
-        }
-        
-        /* --- GENERIC STYLING --- */
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-        }
-        .login-card {
-            background-color: var(--card-bg);
-            box-shadow: 0 4px 20px var(--shadow-color);
-            color: var(--text-color);
-            transition: all 0.3s;
-            height: 100%; 
-            display: flex; 
-            flex-direction: column;
-            padding: 16px; 
-            border-radius: 12px; /* NEW: Rounded borders for all 3 cards */
-        }
-        
-        /* FINAL FIX: Custom Shaded Border */
-        .border-saphala-glow {
-            border: 2px solid var(--saphala-border-color);
-            box-shadow: 0 0 15px var(--saphala-border-color); /* Stronger color glow */
-        }
+        [data-theme="subtle-pro"] {
+            /* Theme 5: Subtle Pro (Light) */
+            --bg-color: #EFEFEF;
+            --card-bg: #F9F9F9;
+            --primary-color: #5D4037; /* Brown/Earth Tone for professionalism */
+            --text-color: #4E342E;
+            --accent-color: #8D6E63;
+            --shadow-color: rgba(93, 64, 55, 0.1);
+            --rank-gold: #FFC0CB; /* Soft Pink Gold */
+            --rank-silver: #D3D3D3;
+            --rank-bronze: #B8860B;
+            --saphala-border-color: #8D6E63;
+        }
+        
+        /* --- GENERIC STYLING --- */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        .login-card {
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 20px var(--shadow-color);
+            color: var(--text-color);
+            transition: all 0.3s;
+            height: 100%; 
+            display: flex; 
+            flex-direction: column;
+            padding: 16px; 
+            border-radius: 12px; /* NEW: Rounded borders for all 3 cards */
+        }
+        
+        /* FINAL FIX: Custom Shaded Border */
+        .border-saphala-glow {
+            border: 2px solid var(--saphala-border-color);
+            box-shadow: 0 0 15px var(--saphala-border-color); /* Stronger color glow */
+        }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white; 
-            transition: background-color 0.3s;
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-        
-        /* Rank Styling - Controlled by JS function */
-        .rank-list-item { 
-            padding: 6px 10px; 
-            margin-bottom: 1px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            line-height: 1.25; 
-        }
-        .rank-list-header {
-            font-size: 1.1rem;
-            font-weight: 700;
-            padding: 8px 10px;
-            margin-top: 15px; 
-            margin-bottom: 2px;
-            color: var(--primary-color);
-        }
-        .main-grid {
-            gap: 16px; 
-            padding-bottom: 24px; 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr);
-            align-items: stretch; /* CRITICAL: Ensures all columns stretch to the height of the tallest one */
-            width: 100%;
-            max-width: 1280px;
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-        .text-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-        }
-        
-        .leaderboard-content-wrapper {
-            max-height: 80vh; 
-            overflow-y: auto;
-            padding: 0 8px;
-            flex-grow: 1; 
-        }
-        
-        .login-form-content {
-            flex-grow: 1; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-        }
-        
-        .course-stack-container {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-        
-        .course-item {
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            border: 1px solid var(--accent-color);
-            transition: box-shadow 0.15s;
-        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white; 
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+        
+        /* Rank Styling - Controlled by JS function */
+        .rank-list-item { 
+            padding: 6px 10px; 
+            margin-bottom: 1px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            line-height: 1.25; 
+        }
+        .rank-list-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 8px 10px;
+            margin-top: 15px; 
+            margin-bottom: 2px;
+            color: var(--primary-color);
+        }
+        .main-grid {
+            gap: 16px; 
+            padding-bottom: 24px; 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            align-items: stretch; /* CRITICAL: Ensures all columns stretch to the height of the tallest one */
+            width: 100%;
+            max-width: 1280px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        .text-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .leaderboard-content-wrapper {
+            max-height: 80vh; 
+            overflow-y: auto;
+            padding: 0 8px;
+            flex-grow: 1; 
+        }
+        
+        .login-form-content {
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+        }
+        
+        .course-stack-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+        
+        .course-item {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid var(--accent-color);
+            transition: box-shadow 0.15s;
+        }
 
-        /* Footer Branding Fix */
-        .footer-branding strong {
-            font-size: 1.1rem; 
-            font-weight: 900; 
-            color: var(--primary-color); 
-            margin-left: 4px;
-        }
-        
-        /* Final Marketing Content Coloring */
-        .marketing-copy-colored {
-             color: var(--primary-color);
-        }
-    </style>
+        /* Footer Branding Fix */
+        .footer-branding strong {
+            font-size: 1.1rem; 
+            font-weight: 900; 
+            color: var(--primary-color); 
+            margin-left: 4px;
+        }
+        
+        /* Final Marketing Content Coloring */
+        .marketing-copy-colored {
+             color: var(--primary-color);
+        }
+    </style>
 </head>
 <body class="flex flex-col items-center pt-8">
 
-    <!-- Logo, Title, and Theme Toggle --><div class="mb-5 flex flex-col items-center">
-        <div class="flex items-center mb-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="var(--primary-color)" class="mr-2">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-            </svg>
-            <h1 class="text-4xl font-extrabold" style="color: var(--primary-color);">Saphala PrepEdge</h1>
-        </div>
-        <div class="flex items-center gap-3">
-            <p class="text-sm font-medium" style="color: var(--accent-color);">Your Success is Our Focus</p>
-            <button id="theme-toggle" class="p-1 text-xs rounded-full font-semibold border-2 border-opacity-50" 
-                    style="border-color: var(--accent-color); color: var(--text-color);">
-                Toggle Theme
-            </button>
-        </div>
-    </div>
-    
-    <!-- Main Content Grid (Leaderboard, Login, Courses) --><div class="main-grid">
+        <div class="mb-5 flex flex-col items-center">
+        <img 
+            src="src/assets/images/saphala-prepedge-logo.jpg" 
+            alt="Saphala PrepEdge - Navigate Your Success" 
+            class="h-16 w-auto mb-1"
+        >
+                <div class="flex items-center gap-3">
+                        <p class="text-sm font-medium" style="color: var(--accent-color);">Navigate Your Success</p>
+                        <button id="theme-toggle" class="p-1 text-xs rounded-full font-semibold border-2 border-opacity-50" 
+                    style="border-color: var(--accent-color); color: var(--text-color);">
+                Toggle Theme
+            </button>
+        </div>
+    </div>
+    
+    <div class="main-grid">
 
-        <!-- 1. Gamified Sadhana Leaderboard (Left Panel - HIGH DENSITY) --><div class="login-card border-saphala-glow">
-            <div class="pt-2 pb-1 text-center" style="color: var(--primary-color);">
-                <span class="text-icon">🏆</span> 
-                <h3 class="text-2xl font-extrabold inline-block align-middle">Sadhana Leaderboard</h3>
-            </div>
-            
-            <!-- Leaderboard Container (Dynamic content will be rendered here by JS) --><div id="leaderboard-container" class="leaderboard-content-wrapper space-y-0 text-sm flex-grow">
-                <!-- All three 10-name lists are stacked here vertically --></div>
-            
-            <p class="text-xs mt-auto pt-2 text-right opacity-80 p-2" style="color: var(--accent-color);">Sadhana = Disciplined Practice | Rankings update daily!</p>
-        </div>
+        <div class="login-card border-saphala-glow">
+            <div class="pt-2 pb-1 text-center" style="color: var(--primary-color);">
+                <span class="text-icon">🏆</span> 
+                <h3 class="text-2xl font-extrabold inline-block align-middle">Sadhana Leaderboard</h3>
+            </div>
+            
+            <div id="leaderboard-container" class="leaderboard-content-wrapper space-y-0 text-sm flex-grow">
+                </div>
+            
+            <p class="text-xs mt-auto pt-2 text-right opacity-80 p-2" style="color: var(--accent-color);">Sadhana = Disciplined Practice | Rankings update daily!</p>
+        </div>
 
-        <!-- 2. Central Login/Signup Form --><div class="login-card shadow-2xl border-saphala-glow">
-            
-            <div class="login-form-content">
-                <div class="text-center mb-5">
-                    <h3 class="text-3xl font-extrabold mb-2" style="color: var(--primary-color);">Unlock Your Potential</h3>
-                    
-                    <!-- CRITICAL MARKETING COPY (Colored and Bolded) --><p class="text-lg font-semibold opacity-90 mb-6 marketing-copy-colored">
-                        Crack <span class="font-extrabold">APPSC, UPSC, SBI, LIC, SSC</span> exams with **Confidence**.
-                    </p>
-                </div>
-                
-                <form id="login-form">
-                    <label for="email" class="block text-sm font-medium mb-1">Email / Username</label>
-                    <input id="email" type="email" class="w-full p-3 mb-4 rounded border-2 focus:border-purple-500" style="background-color: var(--bg-color);" placeholder="Enter your email or username">
-                    
-                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
-                    <input id="password" type="password" class="w-full p-3 mb-5 rounded border-2 focus:border-purple-500" style="background-color: var(--bg-color);" placeholder="Enter your password">
+        <div class="login-card shadow-2xl border-saphala-glow">
+            
+            <div class="login-form-content">
+                <div class="text-center mb-5">
+                    <h3 class="text-3xl font-extrabold mb-2" style="color: var(--primary-color);">Unlock Your Potential</h3>
+                    
+                    <p class="text-lg font-semibold opacity-90 mb-6 marketing-copy-colored">
+                        Crack <span class="font-extrabold">APPSC, UPSC, SBI, LIC, SSC</span> exams with **Confidence**.
+                    </p>
+                </div>
+                
+                <form id="login-form">
+                    <label for="email" class="block text-sm font-medium mb-1">Email / Username</label>
+                    <input id="email" type="email" class="w-full p-3 mb-4 rounded border-2 focus:border-purple-500" style="background-color: var(--bg-color);" placeholder="Enter your email or username">
+                    
+                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                    <input id="password" type="password" class="w-full p-3 mb-5 rounded border-2 focus:border-purple-500" style="background-color: var(--bg-color);" placeholder="Enter your password">
 
-                    <div class="flex justify-between items-center text-sm mb-4">
-                        <a href="#" class="text-blue-500 hover:underline">Forgot Password?</a>
-                        <a href="#" id="signup-link" class="text-blue-500 hover:underline">New User? Sign Up</a>
-                    </div>
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <a href="#" class="text-blue-500 hover:underline">Forgot Password?</a>
+                        <a href="#" id="signup-link" class="text-blue-500 hover:underline">New User? Sign Up</a>
+                    </div>
 
-                    <button type="submit" id="login-button" class="w-full p-3 rounded-xl font-bold btn-primary">
-                        Log In
-                    </button>
-                </form>
+                    <button type="submit" id="login-button" class="w-full p-3 rounded-xl font-bold btn-primary">
+                        Log In
+                    </button>
+                </form>
 
-                <div class="mt-auto pt-4 text-center">
-                    <p class="text-xs opacity-75">
-                        By logging in, you accept the 
-                        <a href="#" style="color: var(--accent-color);" class="hover:underline">Terms of Service</a> & 
-                        <a href="#" style="color: var(--accent-color);" class="hover:underline">Privacy Policy</a>.
-                    </p>
-                    <div class="text-center mt-3">
-                        <p class="text-lg font-bold" style="color: var(--primary-color);">India's Best Gamified Ed-Tech Platform</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 3. Vertical Course Stack (Right Panel) --><div class="login-card border-saphala-glow">
-            <h3 class="text-xl font-bold mb-3" style="color: var(--accent-color);">📚 Our Top Courses</h3>
-            
-            <!-- Vertical Course Stack - Tightly Spaced --><div class="course-stack-container">
-                <!-- Course Item 1 --><div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
-                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">UPSC Foundation (GS)</h4>
-                    <p class="text-xs opacity-80">Full Video & E-Book Library</p>
-                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹14,999</span>
-                </div>
-                <!-- Course Item 2 --><div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
-                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">IBPS PO Mock Series</h4>
-                    <p class="text-xs opacity-80">20 Full Mocks + Analytics</p>
-                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹1,999</span>
-                </div>
-                <!-- Course Item 3 --><div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
-                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">SSC CGL Tier 1 Prep</h4>
-                    <p class="text-xs opacity-80">Flashcards & Quizzes Included</p>
-                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹999</span>
-                </div>
-                <!-- Course Item 4 --><div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
-                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">APPSC Group 1 Tests</h4>
-                    <p class="text-xs opacity-80">50 Topic Tests + Mains</p>
-                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹4,500</span>
-                </div>
-                <!-- Course Item 5 --><div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
-                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">Railway Exam Prep</h4>
-                    <p class="text-xs opacity-80">Video Lectures & Practice Sets</p>
-                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹2,500</span>
-                </div>
-            </div>
-            <p class="text-xs mt-3 text-right opacity-80" style="color: var(--primary-color);">View All 15+ Courses</p>
-        </div>
+                <div class="mt-auto pt-4 text-center">
+                    <p class="text-xs opacity-75">
+                        By logging in, you accept the 
+                        <a href="#" style="color: var(--accent-color);" class="hover:underline">Terms of Service</a> & 
+                        <a href="#" style="color: var(--accent-color);" class="hover:underline">Privacy Policy</a>.
+                    </p>
+                    <div class="text-center mt-3">
+                        <p class="text-lg font-bold" style="color: var(--primary-color);">India's Best Gamified Ed-Tech Platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-card border-saphala-glow">
+            <h3 class="text-xl font-bold mb-3" style="color: var(--accent-color);">📚 Our Top Courses</h3>
+            
+            <div class="course-stack-container">
+                <div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
+                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">UPSC Foundation (GS)</h4>
+                    <p class="text-xs opacity-80">Full Video & E-Book Library</p>
+                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹14,999</span>
+                </div>
+                <div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
+                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">IBPS PO Mock Series</h4>
+                    <p class="text-xs opacity-80">20 Full Mocks + Analytics</p>
+                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹1,999</span>
+                </div>
+                <div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
+                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">SSC CGL Tier 1 Prep</h4>
+                    <p class="text-xs opacity-80">Flashcards & Quizzes Included</p>
+                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹999</span>
+                </div>
+                <div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
+                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">APPSC Group 1 Tests</h4>
+                    <p class="text-xs opacity-80">50 Topic Tests + Mains</p>
+                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹4,500</span>
+                </div>
+                <div class="course-item hover:shadow-md transition duration-150" style="border-color: var(--accent-color);">
+                    <h4 class="font-bold text-lg" style="color: var(--primary-color);">Railway Exam Prep</h4>
+                    <p class="text-xs opacity-80">Video Lectures & Practice Sets</p>
+                    <span class="text-xl font-extrabold text-green-600 mt-1 block">₹2,500</span>
+                </div>
+            </div>
+            <p class="text-xs mt-3 text-right opacity-80" style="color: var(--primary-color);">View All 15+ Courses</p>
+        </div>
 
-    </div>
+    </div>
 
-    <!-- Footer Branding --><div class="w-full text-center p-2 text-xs footer-branding" style="color: var(--text-color);">
-        <p class="opacity-80">Powered by 
-            <strong style="color: var(--primary-color); font-size: 1.1rem; font-weight: 900;">Saphala Pathshala</strong> 
-            | Copyrights owned by Saphala PrepEdge &copy; 2025
-        </p>
-    </div>
+    <div class="w-full text-center p-2 text-xs footer-branding" style="color: var(--text-color);">
+        <p class="opacity-80">Powered by 
+            <strong style="color: var(--primary-color); font-size: 1.1rem; font-weight: 900;">Saphala Pathshala</strong> 
+            | Copyrights owned by Saphala PrepEdge &copy; 2025
+        </p>
+    </div>
 
-    <script>
-        // --- Setup Logic ---
-        const storageKey = 'saphala-theme';
-        const body = document.body;
-        const leaderboardContainer = document.getElementById('leaderboard-container');
-        const toggleButton = document.getElementById('theme-toggle');
+    <script>
+        // --- Setup Logic ---
+        const storageKey = 'saphala-theme';
+        const body = document.body;
+        const leaderboardContainer = document.getElementById('leaderboard-container');
+        const toggleButton = document.getElementById('theme-toggle');
 
-        // --- MOCK LEADERBOARD DATA (10 Names Each) ---
-        const MOCK_RANKS = {
-            daily: [
-                { rank: 1, name: 'PrepAce-001', xp: 1200 },
-                { rank: 2, name: 'Vamsi-2025', xp: 1150 },
-                { rank: 3, name: 'Priya-IBPS', xp: 1100 },
-                { rank: 4, name: 'Ravi-UPSC', xp: 1050 },
-                { rank: 5, name: 'Anjana-SSC', xp: 1000 },
-                { rank: 6, name: 'Apoorva-Q', xp: 980 },
-                { rank: 7, name: 'SaiTeja-G', xp: 950 },
-                { rank: 8, name: 'Divya-R', xp: 900 },
-                { rank: 9, name: 'Kiran-P', xp: 880 },
-                { rank: 10, name: 'Uday-V', xp: 850 },
-            ],
-            weekly: [
-                { rank: 1, name: 'Apex-Analyst', xp: 7500 },
-                { rank: 2, name: 'PrepEdgePro', xp: 7200 },
-                { rank: 3, name: 'GS-Master', xp: 6800 },
-                { rank: 4, name: 'QuantKing', xp: 6500 },
-                { rank: 5, name: 'Sadhana-Ace', xp: 6300 },
-                { rank: 6, name: 'Ascent-Flow', xp: 6100 },
-                { rank: 7, name: 'Rhythm-7', xp: 5900 },
-                { rank: 8, name: 'Veteran-12', xp: 5700 },
-                { rank: 9, name: 'Discipline-5', xp: 5500 },
-                { rank: 10, name: 'Momentum-9', xp: 5300 },
-            ],
-             monthly: [ 
-                { rank: 1, name: 'The Zenith', xp: 30000 },
-                { rank: 2, name: 'Master Architect', xp: 28000 },
-                { rank: 3, name: 'Grand Strategist', xp: 25000 },
-                { rank: 4, name: 'Saphala Champion', xp: 23000 },
-                { rank: 5, name: 'Perpetual Performer', xp: 20000 },
-                { rank: 6, name: 'Supreme Sadhana', xp: 18000 },
-                { rank: 7, name: 'Finalist-25', xp: 16000 },
-                { rank: 8, name: 'Apex-Elite', xp: 14000 },
-                { rank: 9, name: 'Precision-X', xp: 12000 },
-                { rank: 10, name: 'Core-Competitor', xp: 10000 },
-            ]
-        };
-        
-        // --- Rendering Logic ---
+        // --- MOCK LEADERBOARD DATA (10 Names Each) ---
+        const MOCK_RANKS = {
+            daily: [
+                { rank: 1, name: 'PrepAce-001', xp: 1200 },
+                { rank: 2, name: 'Vamsi-2025', xp: 1150 },
+                { rank: 3, name: 'Priya-IBPS', xp: 1100 },
+                { rank: 4, name: 'Ravi-UPSC', xp: 1050 },
+                { rank: 5, name: 'Anjana-SSC', xp: 1000 },
+                { rank: 6, name: 'Apoorva-Q', xp: 980 },
+                { rank: 7, name: 'SaiTeja-G', xp: 950 },
+                { rank: 8, name: 'Divya-R', xp: 900 },
+                { rank: 9, name: 'Kiran-P', xp: 880 },
+                { rank: 10, name: 'Uday-V', xp: 850 },
+            ],
+            weekly: [
+                { rank: 1, name: 'Apex-Analyst', xp: 7500 },
+                { rank: 2, name: 'PrepEdgePro', xp: 7200 },
+                { rank: 3, name: 'GS-Master', xp: 6800 },
+                { rank: 4, name: 'QuantKing', xp: 6500 },
+                { rank: 5, name: 'Sadhana-Ace', xp: 6300 },
+                { rank: 6, name: 'Ascent-Flow', xp: 6100 },
+                { rank: 7, name: 'Rhythm-7', xp: 5900 },
+                { rank: 8, name: 'Veteran-12', xp: 5700 },
+                { rank: 9, name: 'Discipline-5', xp: 5500 },
+                { rank: 10, name: 'Momentum-9', xp: 5300 },
+            ],
+             monthly: [ 
+                { rank: 1, name: 'The Zenith', xp: 30000 },
+                { rank: 2, name: 'Master Architect', xp: 28000 },
+                { rank: 3, name: 'Grand Strategist', xp: 25000 },
+                { rank: 4, name: 'Saphala Champion', xp: 23000 },
+                { rank: 5, name: 'Perpetual Performer', xp: 20000 },
+                { rank: 6, name: 'Supreme Sadhana', xp: 18000 },
+                { rank: 7, name: 'Finalist-25', xp: 16000 },
+                { rank: 8, name: 'Apex-Elite', xp: 14000 },
+                { rank: 9, name: 'Precision-X', xp: 12000 },
+                { rank: 10, name: 'Core-Competitor', xp: 10000 },
+            ]
+        };
+        
+        // --- Rendering Logic ---
 
-        const getRankColor = (rank) => {
-            if (rank === 1) return 'var(--rank-gold)';
-            if (rank === 2) return 'var(--rank-silver)';
-            if (rank === 3) return 'var(--rank-bronze)';
-            return ''; // Default
-        }
-        
-        const renderSingleLeaderboard = (data, title) => {
-            let html = `<h4 class="rank-list-header" style="color: var(--primary-color);">${title}</h4>`;
-            
-            data.forEach((item, index) => {
-                const rank = item.rank;
-                const rankColor = getRankColor(rank);
-                
-                // Determine alternating background for non-medal ranks
-                const bgColor = rankColor 
-                    ? rankColor 
-                    : (index % 2 === 0 ? 'var(--card-bg)' : 'rgba(142, 36, 170, 0.1)'); 
+        const getRankColor = (rank) => {
+            if (rank === 1) return 'var(--rank-gold)';
+            if (rank === 2) return 'var(--rank-silver)';
+            if (rank === 3) return 'var(--rank-bronze)';
+            return ''; // Default
+        }
+        
+        const renderSingleLeaderboard = (data, title) => {
+            let html = `<h4 class="rank-list-header" style="color: var(--primary-color);">${title}</h4>`;
+            
+            data.forEach((item, index) => {
+                const rank = item.rank;
+                const rankColor = getRankColor(rank);
+                
+                // Determine alternating background for non-medal ranks
+                const bgColor = rankColor 
+                    ? rankColor 
+                    : (index % 2 === 0 ? 'var(--card-bg)' : 'rgba(142, 36, 170, 0.1)'); 
 
-                const textColor = rankColor ? '#1A0033' : 'var(--text-color)';
-                const fontWeight = rank <= 3 ? 'font-extrabold' : 'font-medium';
-                
-                html += `
-                    <div class="flex justify-between items-center rank-list-item" style="background-color: ${bgColor}; color: ${textColor};">
-                        <span class="${fontWeight} flex items-center">
-                            <span class="text-sm w-4 mr-2 text-center" style="font-weight: 700;">
-                                ${rank}.
-                            </span>
-                            ${item.name}
-                        </span>
-                        <span class="font-bold text-xs" style="color: ${rankColor ? '#1A0033' : 'var(--primary-color)'};">
-                            (${item.xp.toLocaleString('en-IN')} XP)
-                        </span>
-                    </div>
-                `;
-            });
-            return html;
-        };
-        
-        const renderAllLeaderboards = () => {
-            leaderboardContainer.innerHTML = ''; // Clear previous content
-            
-            // Render Daily, Weekly, then Monthly in vertical stack
-            leaderboardContainer.innerHTML += renderSingleLeaderboard(MOCK_RANKS.daily, '🔥 Daily Sadhana (Top 10)');
-            leaderboardContainer.innerHTML += renderSingleLeaderboard(MOCK_RANKS.weekly, '⭐ Weekly Sadhana (Top 10)');
-            leaderboardContainer.innerHTML += renderSingleLeaderboard(MOCK_RANKS.monthly, '👑 Monthly Sadhana (Top 10)');
-        };
+                const textColor = rankColor ? '#1A0033' : 'var(--text-color)';
+                const fontWeight = rank <= 3 ? 'font-extrabold' : 'font-medium';
+                
+                html += `
+                    <div class="flex justify-between items-center rank-list-item" style="background-color: ${bgColor}; color: ${textColor};">
+                        <span class="${fontWeight} flex items-center">
+                            <span class="text-sm w-4 mr-2 text-center" style="font-weight: 700;">
+                                ${rank}.
+                            </span>
+                            ${item.name}
+                        </span>
+                        <span class="font-bold text-xs" style="color: ${rankColor ? '#1A0033' : 'var(--primary-color)'};">
+                            (${item.xp.toLocaleString('en-IN')} XP)
+                        </span>
+                    </div>
+                `;
+            });
+            return html;
+        };
+        
+        const renderAllLeaderboards = () => {
+            leaderboardContainer.innerHTML = ''; // Clear previous content
+            
+            // Render Daily, Weekly, then Monthly in vertical stack
+            leaderboardContainer.innerHTML += renderSingleLeaderboard(MOCK_RANKS.daily, '🔥 Daily Sadhana (Top 10)');
+            leaderboardContainer.innerHTML += renderSingleLeaderboard(MOCK_RANKS.weekly, '⭐ Weekly Sadhana (Top 10)');
+            leaderboardContainer.innerHTML += renderSingleLeaderboard(MOCK_RANKS.monthly, '👑 Monthly Sadhana (Top 10)');
+        };
 
-        // --- Theme Toggle Logic ---
-        const setPreference = (themeId) => {
-            localStorage.setItem(storageKey, themeId);
-            body.setAttribute('data-theme', themeId);
-            renderAllLeaderboards(); 
-        };
+        // --- Theme Toggle Logic ---
+        const setPreference = (themeId) => {
+            localStorage.setItem(storageKey, themeId);
+            body.setAttribute('data-theme', themeId);
+            renderAllLeaderboards(); 
+        };
 
-        const getInitialTheme = () => {
-            const storedTheme = localStorage.getItem(storageKey);
-            return storedTheme || 'light-modern'; 
-        };
+        const getInitialTheme = () => {
+            const storedTheme = localStorage.getItem(storageKey);
+            return storedTheme || 'light-modern'; 
+        };
 
-        // --- Core Login/Signup Handlers (NEW JAVASCRIPT LOGIC) ---
+        // --- Core Login/Signup Handlers (NEW JAVASCRIPT LOGIC) ---
 
-        const handleLogin = (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+        const handleLogin = (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-            if (!email || !password) {
-                // Use alert for quick feedback in static environment
-                alert("Please enter both email/username and password.");
-                return;
-            }
+            if (!email || !password) {
+                // Use alert for quick feedback in static environment
+                alert("Please enter both email/username and password.");
+                return;
+            }
 
-            if (email === 'admin@saphala.com' && password === 'saphala123') {
-                // Simulate Admin Login (In real app, this redirects to /admin/dashboard)
-                alert("SUCCESS! Logging in as Admin. Redirecting to Dashboard...");
-            } else {
-                // Simulate Student Login (In real app, this redirects to /student/dashboard)
-                alert("SUCCESS! Logging in as Student. Redirecting to Dashboard...");
-            }
-            // In the final React app, this is where window.location.href changes
-        };
+            if (email === 'admin@saphala.com' && password === 'saphala123') {
+                // Simulate Admin Login (In real app, this redirects to /admin/dashboard)
+                alert("SUCCESS! Logging in as Admin. Redirecting to Dashboard...");
+            } else {
+                // Simulate Student Login (In real app, this redirects to /student/dashboard)
+                alert("SUCCESS! Logging in as Student. Redirecting to Dashboard...");
+            }
+            // In the final React app, this is where window.location.href changes
+        };
 
-        const handleSignUp = (e) => {
-            e.preventDefault();
-            alert("Redirecting to Sign Up Page. In the final app, this opens the full registration form.");
-        };
-        
-        // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const initialTheme = getInitialTheme();
-            body.setAttribute('data-theme', initialTheme);
+        const handleSignUp = (e) => {
+            e.preventDefault();
+            alert("Redirecting to Sign Up Page. In the final app, this opens the full registration form.");
+        };
+        
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialTheme = getInitialTheme();
+            body.setAttribute('data-theme', initialTheme);
 
-            // 1. Setup Theme Toggle Click Handler
-            toggleButton.addEventListener('click', () => {
-                const currentTheme = body.getAttribute('data-theme');
-                // Cycle through the 5 defined themes
-                const themes = ['light-modern', 'dynamic-glass-dark', 'fusion-violet-dark', 'playful-energy', 'subtle-pro'];
-                const currentIndex = themes.indexOf(currentTheme);
-                const nextIndex = (currentIndex + 1) % themes.length;
-                
-                setPreference(themes[nextIndex]);
-            });
-            
-            // 2. Setup Login Form Submission Handler
-            document.getElementById('login-form').addEventListener('submit', handleLogin);
-            
-            // 3. Setup Sign Up Link Click Handler
-            document.getElementById('signup-link').addEventListener('click', handleSignUp);
+            // 1. Setup Theme Toggle Click Handler
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                // Cycle through the 5 defined themes
+                const themes = ['light-modern', 'dynamic-glass-dark', 'fusion-violet-dark', 'playful-energy', 'subtle-pro'];
+                const currentIndex = themes.indexOf(currentTheme);
+                const nextIndex = (currentIndex + 1) % themes.length;
+                
+                setPreference(themes[nextIndex]);
+            });
+            
+            // 2. Setup Login Form Submission Handler
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            
+            // 3. Setup Sign Up Link Click Handler
+            document.getElementById('signup-link').addEventListener('click', handleSignUp);
 
-            // Initial render
-            renderAllLeaderboards();
-        });
-    </script>
+            // Initial render
+            renderAllLeaderboards();
+        });
+    </script>
 
 </body>
 </html>
